@@ -1,4 +1,4 @@
-$lpath="$home\sstp-$($env:computername)-$(get-date -format yyyyMMdd-hhmm).txt"
+$lpath="$home\VpnTS-$($env:computername)-$(get-date -format yyyyMMdd-hhmm).txt"
 nslookup myip.opendns.com resolver1.opendns.com > $lpath
 tracert -h 15 -w 1 sstp.bergerbd.com >> $lpath
 tracert -h 15 -w 1 vpn3.bergerbd.com >> $lpath
