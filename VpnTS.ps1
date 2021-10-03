@@ -1,4 +1,8 @@
-$lpath="$home\VpnTS-$($env:computername)-$(get-date -format yyyyMMdd-hhmm).txt"
+$path = "$home"
+$lpath = "$path\VpnTS-$($env:computername)-$(get-date -format yyyyMMdd-hhmm).txt"
+$zpath = "$path\VpnTS-$($env:computername)-$(get-date -format yyyyMMdd-hhmm).zip"
+$ldir = "C:\Program Files\OpenVPN\log"
+
 nslookup myip.opendns.com resolver1.opendns.com > $lpath
 tracert -h 15 -w 1 vpn.bergerbd.com >> $lpath
 tracert -h 15 -w 1 vpn3.bergerbd.com >> $lpath
@@ -16,3 +20,9 @@ function Get-WuaHistory
 }
 
 Get-WuaHistory >> $lpath
+
+if (test-path -Path $ldir){
+ If(Test-path $zpath) {Remove-item $zpath}
+ Add-Type -assembly "system.io.compression.filesystem"
+ [io.compression.zipfile]::CreateFromDirectory($ldir, $zpath) 
+}
