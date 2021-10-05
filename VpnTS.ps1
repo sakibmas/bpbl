@@ -24,7 +24,13 @@ function Get-WuaHistory
 Get-WuaHistory >> $lpath
 
 if (test-path -Path $ldir){
- Compress-Archive -Path $ldir\*.log -DestinationPath $zpath
+ Compress-Archive -Path $ldir -DestinationPath $zpath
+}
+
+$ldir2 = "$ENV:USERPROFILE\OpenVPN\log"
+
+if (test-path -Path $ldir2){
+ Compress-Archive -Path $ldir2 -DestinationPath $zpath  -Update
 }
 
 Compress-Archive -Path $lpath -DestinationPath $zpath -Update
