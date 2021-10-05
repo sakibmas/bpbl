@@ -24,7 +24,7 @@ function Get-WuaHistory
 Get-WuaHistory >> $lpath
 
 if (test-path -Path $ldir){
- Compress-Archive -Path $ldir -DestinationPath $zpath
+ Compress-Archive -Path $ldir\*.log -DestinationPath $zpath
 }
 
 Compress-Archive -Path $lpath -DestinationPath $zpath -Update
