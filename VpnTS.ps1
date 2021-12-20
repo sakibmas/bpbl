@@ -23,6 +23,9 @@ function Get-WuaHistory
 
 Get-WuaHistory >> $lpath
 
+Get-EventLog -log Application -Source RASClient | Select EntryType, Message, TimeGenerated | format-list >> $lpath
+
+
 if (test-path -Path $ldir){
  Compress-Archive -Path $ldir -DestinationPath $zpath
 }
