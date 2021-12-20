@@ -23,6 +23,7 @@ function Get-WuaHistory
 
 Get-WuaHistory >> $lpath
 
+Get-VpnConnection | select Name,ServerAddress,DnsSuffix,tunneltype,encryptionlevel | format-list >> $lpath
 Get-EventLog -log Application -Source RASClient | Select EntryType, Message, TimeGenerated | format-list >> $lpath
 
 
