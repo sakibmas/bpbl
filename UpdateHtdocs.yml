@@ -50,6 +50,14 @@
       accept_hostkey: yes
       force: yes
       version: "{{BranchName}}"
+     notify:
+      - Restart web daemon
      tags:
       - update
+
+  handlers:
+   - name: Restart web daemon
+     service:
+      name: httpd
+      state: restarted
 ...
