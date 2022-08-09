@@ -5,7 +5,7 @@ $ldir = "C:\Program Files\OpenVPN\log"
 If(Test-path $zpath) {Remove-item $zpath}
 If(Test-path $lpath) {Remove-item $lpath}
 
-nslookup myip.opendns.com resolver1.opendns.com > $lpath
+Resolve-DnsName -Name myip.opendns.com -Server resolver1.opendns.com > $lpath
 tracert -h 15 -w 1 vpn.bergerbd.com >> $lpath
 tracert -h 15 -w 1 vpn3.bergerbd.com >> $lpath
 function Get-WuaHistory
