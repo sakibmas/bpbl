@@ -1,5 +1,5 @@
 ---
-- hosts: bpbl
+- hosts: bergertech
   become: yes
   tasks:
    - name: Install git package
@@ -16,7 +16,7 @@
      tags:
       - backup
 
-     
+
    - name: Backup htdocs folder
      archive:
       path: "{{HtdocsPath}}"
@@ -33,7 +33,7 @@
       state: present
      tags:
       - backup
-   
+
    - name: Backup databse
      mysql_db:
       name: "{{DbName}}"
