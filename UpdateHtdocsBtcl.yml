@@ -34,6 +34,14 @@
      tags:
       - backup
 
+   - name: Install bzip2 package
+     package:
+      name:
+       - bzip2
+      state: present
+     tags:
+      - backup
+
    - name: Backup databse
      mysql_db:
       name: "{{DbName}}"
