@@ -10,10 +10,9 @@ pipeline {
                                  New-Item -ItemType Directory -Path "$DestinationPath"
                                }
                                $LogFileList=Get-ChildItem $ENV:LogPath -File
-                               $LogFileList
-                               (Get-Date).AddDays(-$ENV:Days).Date
+                               $LogFileList | ft
                                $LogFileFiltered = $LogFileList | Where-Object{$_.LastWriteTime -gt (Get-Date).AddDays(-$ENV:Days).Date}
-                               $LogFileFiltered
+                               $LogFileFiltered | ft
                                $LogFileFiltered | ForEach-Object{Copy-Item $_.FullName -Destination "DestinationPath" -Force}'''
             }
         }
