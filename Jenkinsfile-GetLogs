@@ -1,0 +1,28 @@
+pipeline {
+    agent {
+        label params.AgentNode
+    }
+    stages {
+        stage('Get Logs') {
+            steps {
+                powershell  '''Get-ChildItem $LogPath -File -Recurse | Where-Object{$_.LastWriteTime -lt (Get-Date).AddDays(1).Date} | ForEach-Object{Copy-Item $_.FullName}'''
+            }
+        }
+    }
+    post {
+              always {
+                 emailext mimeType:'text/html',
+                    from: 'jenkins@bergerbd.com',
+                    subject: "${JOB_NAME} ${currentBuild.currentResult}",
+                    to: "${recipientEmails}",
+                    attachLog: true,
+                    body: """Build Number: ${BUILD_NUMBER} <br>
+                             Node Name: ${NODE_NAME} <br>
+                             Workspace: ${WORKSPACE} <br>
+                             Artifacts: ${RUN_ARTIFACTS_DISPLAY_URL} <br>
+                             For details please browse ${BUILD_URL}console"""
+              }
+
+
+    }
+}
