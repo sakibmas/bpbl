@@ -12,8 +12,8 @@ pipeline {
                                $LogFileList=Get-ChildItem $ENV:LogPath -File
                                $LogFileList | ft
                                $LogFileFiltered = $LogFileList | Where-Object{$_.LastWriteTime -gt (Get-Date).AddDays(-$ENV:Days).Date}
-                               $LogFileFiltered | ft
-                               $LogFileFiltered | ForEach-Object{Copy-Item $_.FullName -Destination "DestinationPath" -Force}'''
+                               $LogFileFiltered | ft FullName, LastWriteTime
+                               $LogFileFiltered | ForEach-Object{Copy-Item -Path $_.FullName -Destination "DestinationPath" -Force}'''
             }
         }
     }
