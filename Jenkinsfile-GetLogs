@@ -6,7 +6,7 @@ pipeline {
         stage('Get Logs') {
             steps {
                 powershell  '''$DestinationPath="$PWD\\logs"
-                               if(!(Test-Path "DestinationPath" -PathType Leaf)){
+                               if(!(Test-Path "DestinationPath" -PathType Container)){
                                  New-Item -ItemType Directory -Path "$PWD\\logs"
                                }
                                $LogFileList=Get-ChildItem $LogPath\\*.log -File
