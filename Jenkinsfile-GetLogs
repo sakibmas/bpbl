@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Get Logs') {
             steps {
-                powershell  '''Get-ChildItem $LogPath\\*.log -File -Recurse | Where-Object{$_.LastWriteTime -gt (Get-Date).AddDays(-$Days).Date} | ForEach-Object{Copy-Item $_.FullName -Destination "$PWD" -Force}'''
+                powershell  '''Get-ChildItem $LogPath\\*.log -File | Where-Object{$_.LastWriteTime -gt (Get-Date).AddDays(-$Days).Date} | ForEach-Object{Copy-Item $_.FullName -Destination "$PWD" -Force}'''
             }
         }
     }
