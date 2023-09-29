@@ -5,7 +5,8 @@ pipeline {
     stages {
         stage('Get Logs') {
             steps {
-                powershell  '''Get-ChildItem $LogPath\\*.log -File | Where-Object{$_.LastWriteTime -gt (Get-Date).AddDays(-$Days).Date} | ForEach-Object{Copy-Item $_.FullName -Destination "$PWD" -Force}'''
+                powershell  '''if(Test-Path "$PWD\\logs" -PathType Leaf){Get-ChildItem "$PWD\\logs"}else{New-Item -ItemType Directory -Path "$PWD\\logs"}
+                               Get-ChildItem $LogPath\\*.log -File | Where-Object{$_.LastWriteTime -gt (Get-Date).AddDays(-$Days).Date} | ForEach-Object{Copy-Item $_.FullName -Destination "$PWD\\logs" -Force}'''
             }
         }
     }
