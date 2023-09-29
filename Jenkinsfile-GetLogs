@@ -9,7 +9,7 @@ pipeline {
                                if(!(Test-Path "$DestinationPath" -PathType Container)){
                                  New-Item -ItemType Directory -Path "$DestinationPath"
                                }
-                               $LogFileList=Get-ChildItem $LogPath\\*.log -File
+                               $LogFileList=Get-ChildItem $LogPath -File
                                $LogFileList
                                $LogFileFiltered = $LogFileList | Where-Object{$_.LastWriteTime -gt (Get-Date).AddDays(-$Days).Date}
                                $LogFileFiltered
