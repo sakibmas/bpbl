@@ -20,7 +20,7 @@ pipeline {
             steps {
                 powershell  '''$SourcePath="$PWD\\logs"
                                $ArchivedFileName="$PWD\\$(Get-Date -format yyyy-MM-dd).zip"
-                               if(!(Test-Path "$SourcePath" -PathType Container)){
+                               if((Test-Path "$SourcePath" -PathType Container)){
                                  Compress-Archive -Path "$SourcePath" -DestinationPath "$ArchivedFileName"
                                }'''
             }
