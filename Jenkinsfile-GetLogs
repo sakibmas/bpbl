@@ -11,9 +11,8 @@ pipeline {
                                }
                                if((Test-Path "$DestinationPath" -PathType Container)){
                                  Remove-Item -Path logs -Recurse
-                               }else{
-                                 New-Item -ItemType Directory -Path "$DestinationPath"
                                }
+                               New-Item -ItemType Directory -Path "$DestinationPath"
                                $LogFileList=Get-ChildItem $ENV:LogPath -File
                                $LogFileList | ft
                                $LogFileFiltered = $LogFileList | Where-Object{$_.LastWriteTime -gt (Get-Date).AddDays(-$ENV:Days).Date}
