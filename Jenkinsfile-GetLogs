@@ -37,7 +37,7 @@ pipeline {
                     from: 'jenkins@bergerbd.com',
                     subject: "${JOB_NAME} ${currentBuild.currentResult}",
                     to: "${recipientEmails}",
-                    attachLog: false,
+                    attachLog: true,
                     attachmentsPattern: '*.zip',
                     body: """Build Number: ${BUILD_NUMBER} <br>
                              Node Name: ${NODE_NAME} <br>
