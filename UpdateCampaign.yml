@@ -24,7 +24,6 @@
       accept_hostkey: yes
       force: yes
       version: "{{BranchName}}"
-      recurse: yes
      notify:
       - Restart web daemon
      tags:
