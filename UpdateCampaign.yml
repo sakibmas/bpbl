@@ -28,18 +28,8 @@
    - name: Install python-pymysql package
      package:
       name:
-       - python2-PyMySQL
-       - python3-PyMySQL
        - python3-libselinux
       state: present
-     tags:
-      - backup
-   
-   - name: Backup databse
-     mysql_db:
-      name: "{{DbName}}"
-      state: dump
-      target: "{{BackupPath}}/{{DbName}}.bz2"
      tags:
       - backup
 
