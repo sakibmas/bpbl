@@ -49,6 +49,7 @@
    - name: Apply selinux file context
      sefcontext:
       target: "{{CampaignPath}}/{{TargetCompaignName}}"
+      setype: httpd_sys_content_t
 
   handlers:
    - name: Restart web daemon
