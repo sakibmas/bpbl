@@ -2,20 +2,14 @@
 - hosts: bpbl
   become: yes
   tasks:
-   - name: Install git package
+   - name: Install packages
      package:
-      name: git
-      state: present
-     tags:
-      - update
-
-   - name: Install python-pymysql package
-     package:
-      name:
+      name: 
+       - git
        - python3-libselinux
       state: present
      tags:
-      - backup
+      - update
 
    - name: Update git repository
      git:
