@@ -20,7 +20,7 @@
    - name: Backup htdocs folder
      archive:
       path: "{{HtdocsPath}}"
-      dest: "{{BackupPath}}/prod.tar.bz2"
+      dest: "{{BackupPath}}/htdocs.tar.bz2"
       format: bz2
      tags:
       - backup
@@ -45,7 +45,7 @@
    - name: Update git repository
      git:
       repo: "{{RepoSsh}}"
-      dest: "{{HtdocsPath}}"
+      dest: "{{BpblHtdocsPath}}"
       clone: no
       accept_hostkey: yes
       force: yes
