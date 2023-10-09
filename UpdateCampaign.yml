@@ -38,6 +38,10 @@
      tags:
       - update
 
+   - name: Set SELinux file context mapping definitions
+     sefcontext:
+      setype: httpd_sys_content_t
+      target: "{{ CampaignPath }}/{{ TargetCompaignName }}"
 
   handlers:
    - name: Restart web daemon
