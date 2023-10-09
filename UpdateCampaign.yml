@@ -30,6 +30,7 @@
       name:
        - python2-PyMySQL
        - python3-PyMySQL
+       - python3-libselinux
       state: present
      tags:
       - backup
@@ -54,6 +55,10 @@
       - Restart web daemon
      tags:
       - update
+
+  - name: Apply selinux file context
+    sefcontext:
+     target: "{{CampaignPath}}"
 
   handlers:
    - name: Restart web daemon
