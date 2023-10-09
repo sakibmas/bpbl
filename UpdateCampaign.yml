@@ -30,8 +30,7 @@
       - update
 
    - name: Set SELinux file context mapping definitions
-     command:
-      - restorecon -Rv "{{ CampaignPath }}"
+     command: restorecon -Rv "{{ CampaignPath }}"
 
   handlers:
    - name: Restart web daemon
