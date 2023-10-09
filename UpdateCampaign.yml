@@ -19,8 +19,8 @@
 
    - name: Update git repository
      git:
-      repo: "{{CampaignRepoSsh}}"
-      dest: "{{ CampaignName }}"
+      repo: "{{ CampaignRepoSsh }}"
+      dest: "{{ TargetCompaignName }}"
       accept_hostkey: yes
       force: yes
       version: "{{BranchName}}"
@@ -32,7 +32,7 @@
 
    - name: Copy files
      copy:
-      src: "{{ CampaignName }}"
+      src: "{{ TargetCompaignName }}"
       dest: "{{ CampaignPath }}"
       setype: httpd_sys_content_t
       remote_src: yes
