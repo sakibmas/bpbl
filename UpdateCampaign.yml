@@ -36,21 +36,22 @@
    - name: Update git repository
      git:
       repo: "{{CampaignRepoSsh}}"
-      dest: "./"
+      dest: "{{ CampaignName }}"
       accept_hostkey: yes
       force: yes
       version: "{{BranchName}}"
+      recurse: yes
      notify:
       - Restart web daemon
      tags:
       - update
 
    - name: Copy files
-     file:
-      src: "./berger"
-      path: "{{ CampaignPath }}/{{ CampaignName }}"
+     copy:
+      src: "{{ CampaignName }}"
+      dest: "{{ CampaignPath }}"
       setype: httpd_sys_content_t
-      state: directory
+      remote_src: yes
      tags:
       - update
 
