@@ -8,8 +8,6 @@
        - git
        - python3-libselinux
       state: present
-     tags:
-      - update
 
    - name: Update git repository
      git:
@@ -18,17 +16,7 @@
       accept_hostkey: yes
       force: yes
       version: "{{BranchName}}"
-     notify:
-      - Restart web daemon
-     tags:
-      - update
 
    - name: Set SELinux file context mapping definitions
      command: restorecon -Rv "{{ CampaignPath }}"
-
-  handlers:
-   - name: Restart web daemon
-     service:
-      name: httpd
-      state: restarted
 ...
