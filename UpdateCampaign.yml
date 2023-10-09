@@ -9,22 +9,6 @@
      tags:
       - update
 
-   - name: Create backup path
-     file:
-      state: directory
-      path: "{{BackupPath}}"
-     tags:
-      - backup
-
-     
-   - name: Backup htdocs folder
-     archive:
-      path: "{{HtdocsPath}}"
-      dest: "{{BackupPath}}/htdocs.tar.bz2"
-      format: bz2
-     tags:
-      - backup
-
    - name: Install python-pymysql package
      package:
       name:
