@@ -20,7 +20,7 @@
    - name: Update git repository
      git:
       repo: "{{ CampaignRepoSsh }}"
-      dest: "{{ TargetCompaignName }}"
+      dest: "{{ CampaignPath }}/{{ TargetCompaignName }}"
       accept_hostkey: yes
       force: yes
       version: "{{BranchName}}"
@@ -29,19 +29,9 @@
      tags:
       - update
 
-   - name: Copy files
-     copy:
-      src: "{{ TargetCompaignName }}"
-      dest: "{{ CampaignPath }}"
-      setype: httpd_sys_content_t
-      remote_src: yes
-     tags:
-      - update
-
    - name: Set SELinux file context mapping definitions
-     sefcontext:
-      setype: httpd_sys_content_t
-      target: "{{ CampaignPath }}/{{ TargetCompaignName }}"
+     command:
+      - restorecon -Rv "{{ CampaignPath }}"
 
   handlers:
    - name: Restart web daemon
