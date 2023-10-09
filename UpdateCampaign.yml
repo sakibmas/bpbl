@@ -36,8 +36,7 @@
    - name: Update git repository
      git:
       repo: "{{CampaignRepoSsh}}"
-      dest: "{{CampaignPath}}/{{TargetCompaignName}}"
-      clone: no
+      dest: "./"
       accept_hostkey: yes
       force: yes
       version: "{{BranchName}}"
@@ -46,10 +45,15 @@
      tags:
       - update
 
-   - name: Apply selinux file context
-     sefcontext:
-      target: "{{CampaignPath}}/{{TargetCompaignName}}"
+   - name: Copy files
+     file:
+      src: "./berger"
+      path: "{{ CampaignPath }}/{{ CampaignName }}"
       setype: httpd_sys_content_t
+      state: directory
+     tags:
+      - update
+
 
   handlers:
    - name: Restart web daemon
