@@ -56,9 +56,9 @@
      tags:
       - update
 
-  - name: Apply selinux file context
-    sefcontext:
-     target: "{{CampaignPath}}"
+   - name: Apply selinux file context
+     sefcontext:
+      target: "{{CampaignPath}}"
 
   handlers:
    - name: Restart web daemon
