@@ -36,7 +36,7 @@
    - name: Update git repository
      git:
       repo: "{{CampaignRepoSsh}}"
-      dest: "{{CampaignPath}}"
+      dest: "{{CampaignPath}}/{{TargetCompaignName}}"
       clone: no
       accept_hostkey: yes
       force: yes
@@ -48,7 +48,7 @@
 
    - name: Apply selinux file context
      sefcontext:
-      target: "{{CampaignPath}}"
+      target: "{{CampaignPath}}/{{TargetCompaignName}}"
 
   handlers:
    - name: Restart web daemon
